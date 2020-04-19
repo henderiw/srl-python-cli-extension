@@ -1,6 +1,7 @@
 ---
 - name: list files in directory
   become: true
+  become_user: su -
   shell: 'ls -lrt'
   register: result
 
