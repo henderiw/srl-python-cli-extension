@@ -2,7 +2,7 @@
 - name: list files in directory
   become: true
   become_exe: sudo su -
-  become_flags: 
+  become_flags: ''
   shell: 'ls -lrt'
   register: result
 
