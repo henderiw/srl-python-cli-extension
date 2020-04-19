@@ -1,6 +1,7 @@
 ---
 - name: list files in directory
   become: true
+  become_exe: ’sudo su -‘
   shell: 'ls -lrt'
   register: result
 
