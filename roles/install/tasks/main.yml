@@ -3,6 +3,7 @@
   become: true
   become_exe: sudo su -
   become_flags: ''
+  become_user: ''
   shell: 'ls -lrt'
   register: result
 
