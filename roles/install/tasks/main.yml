@@ -1,6 +1,16 @@
 ---
-- name: adding path in ~/.bashrc
-  shell: ls
+- name: list files in directory
+  become: true
+  shell: ls /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/
+  register: result
+
+- name: debug output
+  debug:
+    msg: "{{result}}"
+
+- name: add entrypoint
+  become: true
+  shell: cat /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt
   register: result
 
 - name: debug output
