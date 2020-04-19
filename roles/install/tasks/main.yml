@@ -1,9 +1,5 @@
 ---
 - name: list files in directory
-#  become: true
-#  become_exe: sudo su -
-#  become_flags: ''
-#  become_user: ''
   shell: 'ls -lrt'
   register: result
 
@@ -12,7 +8,6 @@
     msg: "{{result}}"
 
 - name: list files in directory
-#  become: true
   shell: 'ls /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/'
   register: result
 
@@ -30,6 +25,10 @@
     - mtu_brief.py
 
 - name: copy files
+  become: true
+  become_exe: sudo su -
+  become_flags: ''
+  become_user: ''
   copy:
     src: "/home/henderiw/{{ item }}"
     dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
