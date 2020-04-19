@@ -23,9 +23,17 @@
 - name: copy files
   copy:
     src: "/home/henderiw/{{ item }}"
+    dest: "/tmp/{{ item }}"
+    mode: "0755"
+  with_items:
+    - in_error_brief.py
+    - mtu_brief.py
+
+- name: copy files
+  copy:
+    src: "/home/henderiw/{{ item }}"
     dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
     mode: "0755"
-    #remote_src: yes
   with_items:
     - in_error_brief.py
     - mtu_brief.py
