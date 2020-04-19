@@ -5,4 +5,4 @@
 
 - name: debug output
   debug:
-    msg: "result"
+    msg: "{{result}}"
