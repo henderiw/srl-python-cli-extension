@@ -1,9 +1,9 @@
 ---
 - name: list files in directory
-  become: true
-  become_exe: sudo su -
-  become_flags: ''
-  become_user: ''
+#  become: true
+#  become_exe: sudo su -
+#  become_flags: ''
+#  become_user: ''
   shell: 'ls -lrt'
   register: result
 
@@ -12,7 +12,7 @@
     msg: "{{result}}"
 
 - name: list files in directory
-  become: true
+#  become: true
   shell: 'ls /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/'
   register: result
 
@@ -21,7 +21,7 @@
     msg: "{{result}}"
 
 - name: add entrypoint
-  become: true
+#  become: true
   shell: 'cat /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt'
   register: result
 
