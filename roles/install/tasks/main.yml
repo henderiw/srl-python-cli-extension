@@ -1,6 +1,15 @@
 ---
 - name: list files in directory
   become: true
+  shell: ls -lrt
+  register: result
+
+- name: debug output
+  debug:
+    msg: "{{result}}"
+
+- name: list files in directory
+  become: true
   shell: ls /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/
   register: result
 
