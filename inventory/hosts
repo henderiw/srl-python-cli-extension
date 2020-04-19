@@ -1,0 +1,9 @@
+[srlinux]
+#srlinux-A ansible_host=172.18.18.2
+#srlinux-B ansible_host=172.18.18.3
+srlinux-C ansible_host=172.18.18.4
+
+[srlinux:vars]
+#ansible_ssh_common_args='-o ProxyCommand=" ssh -W %h:%p -q henderiw@104.155.8.22'
+ansible_user=linuxadmin 
+ansible_pass=linuxadmin

@@ -1,0 +1,8 @@
+---
+- name: adding path in ~/.bashrc
+  shell: ls
+  register: result
+
+- name: debug output
+  debug:
+    msg: "result"
