@@ -38,6 +38,7 @@
 #     - mtu_brief.py
 
 - name: add lineinfile entrypoint
+  become: true
   lineinfile:
     dest: /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt
     line: "{{ item }} = srlinux.mgmt.cli.plugins.reports.{{ item }}:Plugin"
