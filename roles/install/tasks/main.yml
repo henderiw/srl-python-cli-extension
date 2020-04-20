@@ -24,18 +24,18 @@
 #     - in_error_brief.py
 #     - mtu_brief.py
 
-# - name: copy files
-#   become: true
-#   become_exe: sudo su -
-#   become_flags: ''
-#   become_user: ''
-#   copy:
-#     src: "/home/henderiw/{{ item }}"
-#     dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
-#     mode: "0644"
-#   with_items:
-#     - in_error_brief.py
-#     - mtu_brief.py
+- name: copy files
+  become: true
+  become_user: ''
+  become_exe: /usr/bin/sudo
+  become_flags: ''
+  copy:
+    src: "/home/henderiw/{{ item }}"
+    dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
+    mode: "0644"
+  with_items:
+    - in_error_brief.py
+    - mtu_brief.py
 
 - name: add lineinfile entrypoint
   become: true
