@@ -26,9 +26,9 @@
 
 - name: copy files
   become: true
-  become_user: ''
+  #become_user: ''
   become_exe: /usr/bin/sudo
-  become_flags: ''
+  #become_flags: ''
   copy:
     src: "/home/henderiw/{{ item }}"
     dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
@@ -39,9 +39,9 @@
 
 - name: add lineinfile entrypoint
   become: true
-  become_user: ''
+  #become_user: ''
   become_exe: /usr/bin/sudo
-  become_flags: ''
+  #become_flags: ''
   lineinfile:
     dest: /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt
     line: "{{ item }} = srlinux.mgmt.cli.plugins.reports.{{ item }}:Plugin"
