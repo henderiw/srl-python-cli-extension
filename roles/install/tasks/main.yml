@@ -1,45 +1,52 @@
 ---
-- name: list files in directory
-  shell: 'ls -lrt'
-  register: result
+# - name: list files in directory
+#   shell: 'ls -lrt'
+#   register: result
 
-- name: debug output
-  debug:
-    msg: "{{result}}"
+# - name: debug output
+#   debug:
+#     msg: "{{result}}"
 
-- name: list files in directory
-  shell: 'ls /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/'
-  register: result
+# - name: list files in directory
+#   shell: 'ls /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/'
+#   register: result
 
-- name: debug output
-  debug:
-    msg: "{{result}}"
+# - name: debug output
+#   debug:
+#     msg: "{{result}}"
 
-- name: copy files
-  copy:
-    src: "/home/henderiw/{{ item }}"
-    dest: "/tmp/{{ item }}"
-    mode: "0755"
+# - name: copy files
+#   copy:
+#     src: "/home/henderiw/{{ item }}"
+#     dest: "/tmp/{{ item }}"
+#     mode: "0644"
+#   with_items:
+#     - in_error_brief.py
+#     - mtu_brief.py
+
+# - name: copy files
+#   become: true
+#   become_exe: sudo su -
+#   become_flags: ''
+#   become_user: ''
+#   copy:
+#     src: "/home/henderiw/{{ item }}"
+#     dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
+#     mode: "0644"
+#   with_items:
+#     - in_error_brief.py
+#     - mtu_brief.py
+
+- name: add lineinfile entrypoint
+  lineinfile:
+    dest: /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt
+    line: "{{ item }} = srlinux.mgmt.cli.plugins.reports.{{ item }}:Plugin"
   with_items:
-    - in_error_brief.py
-    - mtu_brief.py
+    - mtu_brief
+    - in_error_brief
 
-- name: copy files
-  become: true
-  become_exe: sudo su -
-  become_flags: ''
-  become_user: ''
-  copy:
-    src: "/home/henderiw/{{ item }}"
-    dest: "/opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux/mgmt/cli/plugins/reports/{{ item }}"
-    mode: "0755"
-  with_items:
-    - in_error_brief.py
-    - mtu_brief.py
-
-- name: add entrypoint
-#  become: true
-  shell: 'cat /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt'
+- name: show entrypoint file content
+  shell: "cat /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt"
   register: result
 
 - name: debug output
