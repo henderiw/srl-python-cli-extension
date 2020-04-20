@@ -39,10 +39,10 @@
 
 - name: add lineinfile entrypoint
   become: true
-  become_method: sudo
+  become_method: su
   become_user: root
   #become_user: ''
-  become_exe: sudo su -
+  #become_exe: sudo su -
   become_flags: ''
   lineinfile:
     dest: /opt/srlinux/python/virtual-env/lib/python3.6/site-packages/srlinux-0.1-py3.6.egg-info/entry_points.txt
